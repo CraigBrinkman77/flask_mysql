@@ -30,9 +30,9 @@ def create_ninja():
 @app.route('/dojos/<int:id>')
 def ninja_list(id):
 
-    ninjas = Ninja.get_all_ninjas(id)
+    dojo = Dojo.get_one_dojo(id)
 
-    return render_template('display_ninjas.html', ninjas = ninjas)
+    return render_template('display_ninjas.html', dojo = dojo)
 
 @app.route('/ninja/new')
 def new_ninja_form():
