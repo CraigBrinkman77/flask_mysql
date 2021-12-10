@@ -1,8 +1,10 @@
-
+from flask import Flask, render_template, request, redirect
 from flask_app import app
-from flask_app.models import users
 
 
+@app.route('/')
+def index():
+    return render_template("index.html")
 
 @app.errorhandler(404)
 def check(error):
