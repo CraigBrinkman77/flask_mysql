@@ -1,9 +1,39 @@
+# the function that will return an instance of a connection
 from flask_app.config.mysqlconnection import connectToMySQL
+# model the class after the friend table from our database
+DB = 'dojoschema'
+class Ninja:
+    def __init__( self , data ):
+        self.id = data['id']
+        self.first_name = data['first_name']
+        self.last_name = data['last_name']
+        self.age = data['age']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
+    # Now we use class methods to query our database
+    @classmethod
+    def get_all_ninjas(cls, id):
 
-class Create:
+        query = "SELECT * FROM ninjas WHERE dojo_id = %(id)s;"
+        data = {
+            'id' : id
+        }
+
+        results = connectToMySQL(DB).query_db(query, data = data)
+        
+        ninjas = []
+        
+        for ninja in results:
+            ninjas.append( cls(ninja) )
+        return ninjas
 
     @classmethod
-    def save(cls, data ):
-        query = "INSERT INTO users ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(email)s , NOW() , NOW() );"
-        # data is a dictionary that will be passed into the save method from server.py
-        return connectToMySQL('user_schema').query_db( query, data )
+    def create_ninja(cls, data):
+        query = "INSERT INTO ninjas (first_name, last_name, age, dojo_id, created_at, updated_at)  VALUES (%(first_name)s, %(last_name)s, %(age)s, %(dojo_id)s,now(), now());"
+
+        data ={
+            **data
+        }
+        print(data)
+
+        results = connectToMySQL(DB).query_db(query, data = data)

@@ -1,10 +1,13 @@
-from flask import Flask, render_template, request, redirect
+from flask import redirect
 from flask_app import app
+
+from flask_app.controllers import dojos
+
 
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return redirect('/dojos')
 
 @app.errorhandler(404)
 def check(error):
