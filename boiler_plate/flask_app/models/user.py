@@ -22,3 +22,11 @@ class User:
         for user in results:
             users.append( cls(user) )
         return users
+
+class Create:
+
+    @classmethod
+    def save(cls, data ):
+        query = "INSERT INTO users ( first_name , last_name , email , created_at, updated_at ) VALUES ( %(fname)s , %(lname)s , %(email)s , NOW() , NOW() );"
+        # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL('user_schema').query_db( query, data )

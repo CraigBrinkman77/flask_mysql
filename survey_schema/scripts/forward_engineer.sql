@@ -5,26 +5,26 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema login_and_reg
+-- Schema Survey_Schema
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema login_and_reg
+-- Schema Survey_Schema
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `login_and_reg` DEFAULT CHARACTER SET utf8 ;
-USE `login_and_reg` ;
+CREATE SCHEMA IF NOT EXISTS `Survey_Schema` DEFAULT CHARACTER SET utf8 ;
+USE `Survey_Schema` ;
 
 -- -----------------------------------------------------
--- Table `login_and_reg`.`users`
+-- Table `Survey_Schema`.`dojos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `login_and_reg`.`users` (
+CREATE TABLE IF NOT EXISTS `Survey_Schema`.`dojos` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `email` CHAR(60) NULL,
-  `passowrd` CHAR(60) NULL,
-  `created_at` DATETIME NULL,
-  `updated_at` DATETIME NULL,
+  `name` VARCHAR(45) NULL,
+  `location` VARCHAR(45) NULL,
+  `language` VARCHAR(45) NULL,
+  `comment` TEXT NULL,
+  `crated_at` DATETIME NULL DEFAULT NOW(),
+  `updated_at` DATETIME NULL DEFAULT NOW(),
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -32,4 +32,4 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-users
+dojos
